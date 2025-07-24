@@ -21,4 +21,4 @@ WHERE (CategoryID = 1 AND UnitPrice <= 50) OR (CategoryID = 8 AND UnitPrice <= 7
 --5. ชื่อบริษัทลูกค้า ที่อยู่ใน ประเทศ USA ที่ไม่มีหมายเลข FAX  เรียงตามลำดับชื่อบริษัท 
 
 SELECT CompanyName FROM Customers
-WHERE Country = 'USA' AND Fax IS NULL
+WHERE Country = 'USA' AND Fax IS NULL ORDER BY CompanyName
