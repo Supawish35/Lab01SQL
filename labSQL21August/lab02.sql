@@ -208,8 +208,7 @@ GROUP BY e.FirstName, e.LastName, c.CompanyName, c.ContactName, c.Phone, c.Fax
 
 --? 18  จงแสดงข้อมูลว่า วันที่ 3 มิถุนายน 2541 พนักงานแต่ละคน ขายสินค้า ได้เป็นยอดเงินเท่าใด พร้อมทั้งแสดงชื่อคนที่ไม่ได้ขายของด้วย
 SELECT e.FirstName + ' ' + e.LastName AS FullName,
-       SUM(od.Quantity * od.UnitPrice * (1 - od.Discount)) AS TotalSales,
-       o.OrderDate
+       SUM(od.Quantity * od.UnitPrice * (1 - od.Discount)) AS TotalSales
 FROM Employees e
     LEFT JOIN Orders o ON e.EmployeeID = o.EmployeeID
         AND o.OrderDate = '1998-06-03'
