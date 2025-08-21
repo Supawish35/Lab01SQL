@@ -206,15 +206,17 @@ WHERE e.BirthDate <= DATEADD(YEAR, -60, GETDATE())
     AND c.Fax IS NOT NULL
 GROUP BY e.FirstName, e.LastName, c.CompanyName, c.ContactName, c.Phone, c.Fax
 
---! 18  จงแสดงข้อมูลว่า วันที่ 3 มิถุนายน 2541 พนักงานแต่ละคน ขายสินค้า ได้เป็นยอดเงินเท่าใด พร้อมทั้งแสดงชื่อคนที่ไม่ได้ขายของด้วย
+--? 18  จงแสดงข้อมูลว่า วันที่ 3 มิถุนายน 2541 พนักงานแต่ละคน ขายสินค้า ได้เป็นยอดเงินเท่าใด พร้อมทั้งแสดงชื่อคนที่ไม่ได้ขายของด้วย
 SELECT e.FirstName + ' ' + e.LastName AS FullName,
-       SUM(od.Quantity * od.UnitPrice * (1 - od.Discount)) AS TotalSales
+       SUM(od.Quantity * od.UnitPrice * (1 - od.Discount)) AS TotalSales,
+       o.OrderDate
 FROM Employees e
     LEFT JOIN Orders o ON e.EmployeeID = o.EmployeeID
         AND o.OrderDate = '1998-06-03'
-    LEFT JOIN [Order Details] od ON o.OrderID = od.OrderID
-GROUP BY e.FirstName, e.LastName
---! ---------------------------------------------------------------------------
+    LEFT JOIN [Order Details] od ON o.OrderID = od.OrderID 
+GROUP BY e.FirstName, e.LastName,o.OrderDate
+ORDER BY FullName;
+
 
 --? 19.  จงแสดงรหัสรายการสั่งซื้อ ชื่อพนักงาน ชื่อบริษัทลูกค้า เบอร์โทร วันที่ลูกค้าต้องการสินค้า เฉพาะรายการที่มีพนักงานชื่อมากาเร็ตเป็นคนรับผิดชอบพร้อมทั้งแสดงยอดเงินรวมที่ลูกค้าต้องชำระด้วย (ทศนิยม 2 ตำแหน่ง)
 SELECT o.OrderID,
