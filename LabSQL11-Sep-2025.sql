@@ -58,5 +58,7 @@ where ShipperID = 4
 update Customers set ContactName ='วรมิมทร์',ContactTitle='HR', Address = 'อุดรธานี Thailand'
 Where CustomerID = 'Udru1'
 
-SELECT * 
-FROM Customers
+DELETE FROM Shippers
+WHERE ShipperID = 5
+
+
