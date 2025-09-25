@@ -1,0 +1,20 @@
+CREATE TABLE Animal (
+    AID INT PRIMARY KEY IDENTITY(1,1),
+    AName VARCHAR(50),
+    Descriptions VARCHAR(255),
+    QTY INT DEFAULT 0,
+    TypeID INT 
+)
+
+SELECT *
+FROM Animal
+
+ALTER TABLE Animal
+ADD FOREIGN KEY (TypeID) REFERENCES AnimalType(TypeID)
+
+USE master
+GO
+
+DROP DATABASE IF EXISTS AnimalDB
+GO
+
