@@ -1,7 +1,8 @@
 USE master
 GO
 
-DROP DATABASE IF EXISTS AnimalDB
+IF EXISTS(SELECT * FROM sysdatabases WHERE name ='AnimalDB')
+    DROP DATABASE AnimalDB
 GO
 
 CREATE DATABASE AnimalDB
